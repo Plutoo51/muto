@@ -34,7 +34,8 @@ fi
 
 # Extract solution name from filename (remove path and .json extension)
 ROOT_NAME=$(basename "$JSON_FILE" .json)
-SOLUTION_NAME="${ROOT_NAME}-v-1"
+VERSION=$(jq -r '.metadata.version' "$JSON_FILE")
+SOLUTION_NAME="${ROOT_NAME}-v-${VERSION}"
 
 export SYMPHONY_API_URL=http://localhost:8082/v1alpha2/
 
