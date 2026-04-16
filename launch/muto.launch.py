@@ -25,6 +25,8 @@ def generate_launch_description():
         "symphony_port":           int(os.getenv("MUTO_SYMPHONY_PORT", "1883")),
         "symphony_api_url":        os.getenv("MUTO_SYMPHONY_API_URL", "http://localhost:8082/v1alpha2/"),
         "symphony_broker_address": os.getenv("MUTO_SYMPHONY_BROKER_ADDRESS", "tcp://mosquitto:1883"),
+        "symphony_properties_group": os.getenv("MUTO_SYMPHONY_PROPERTIES_GROUP", "fleet-1"),
+        "symphony_client_id": os.getenv("SYMPHONY_CLIENT_ID", "symphony"),
     }
 
     # Declare launch arguments
@@ -201,6 +203,7 @@ def generate_launch_description():
             {"name": vehicle_name},
             {"namespace": vehicle_namespace},
             {"symphony_target_name": vehicle_name},
+            {"symphony_name": vehicle_name},
             env_params,
         ],
         arguments=['--ros-args', '--log-level', log_level]
